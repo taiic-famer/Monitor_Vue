@@ -21,10 +21,12 @@ Vue前端
 ```cd mqtt ```
 
 ```npm mqtt.js```
+
 ###4、运行Web服务器
 ```cd server ```
 
 ```npm run serve ```
+
 ###5、运行vue前端
 ```cd vueclient ```
 
