@@ -1,0 +1,30 @@
+{
+  "id": "2160752",
+  "name": "elTIcon",
+  "font_family": "iconfont",
+  "css_prefix_text": "el-third-icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "14160913",
+      "name": "监控",
+      "font_class": "jiankong1",
+      "unicode": "e74e",
+      "unicode_decimal": 59214
+    },
+    {
+      "icon_id": "741049",
+      "name": "后台管理",
+      "font_class": "houtaiguanli",
+      "unicode": "e847",
+      "unicode_decimal": 59463
+    },
+    {
+      "icon_id": "9783462",
+      "name": "任务",
+      "font_class": "renwu",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+body{background-color:#1b1b1b;color: aliceblue}.jq22{text-align:left;color:#dcdcdc}.jq22 a{padding:10px;color:#f0f8ff;border:1px solid #878787;margin:10px}
+.container {width: 300px; margin: 0 auto;}
+
+a {color:#D72;}
+.examples {text-align: left;}
+:not(pre) > code[class*="language-"], pre[class*="language-"] {background-color: #EFECEA;}
+.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string, .token.variable{background-color: transparent;}
+footer {text-align: center; background-color: #EFECEA; padding: 10px; color: #666}
