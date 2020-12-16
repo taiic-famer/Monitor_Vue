@@ -20,6 +20,8 @@ Vue前端
 3、运行mqtt服务器
 ```cd mqtt ```
 
+将目录node_modules\jsonschema\lib下的validator.js文件107行throw new SchemaError('Expected `schema` to be an object or boolean');注释掉
+
 ```npm mqtt.js```
 
 4、运行Web服务器
