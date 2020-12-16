@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <el-dialog title="消息数据" :visible.sync="dialogVisible" width="30%">
       <el-tabs value="1">
         <el-tab-pane label="添加消息" name="1">
@@ -107,5 +107,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.main {
+  width: 1680px;
+  height: 890px;
+}
 </style>

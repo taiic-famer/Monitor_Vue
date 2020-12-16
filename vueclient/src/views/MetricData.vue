@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="main">
     <iframe
       src="http://192.168.81.41:32007/d/3138fa155d5915769fbded898ac09fd9/kubernetes-kubelet?orgId=1&kiosk"
       width="100%"
@@ -21,7 +21,8 @@ export default {
 </script>
 
 <style  scoped>
-.container {
-  height: 95vh;
+.main {
+  width: 1680px;
+  height: 890px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mian">
     <h1>无人机列表</h1>
     <div v-if="isReloadData">
       <el-table :data="items">
@@ -101,5 +101,9 @@ export default {
 .block {
   position: fixed;
   bottom: 50px;
+}
+.main {
+  width: 1680px;
+  height: 890px;
 }
 </style>

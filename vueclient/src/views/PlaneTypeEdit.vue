@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <el-button type="primary" plain @click="dialogVisible = true"
       ><h3>{{ id ? '编辑' : '添加' }}无人机类型</h3></el-button
     >
@@ -50,5 +50,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.main {
+  width: 1680px;
+  height: 890px;
+}
 </style>

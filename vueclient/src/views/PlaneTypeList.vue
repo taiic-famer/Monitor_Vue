@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <h1>无人机类型列表</h1>
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="240"> </el-table-column>
@@ -45,3 +45,9 @@ export default {
   },
 }
 </script>
+<style scoped>
+.main {
+  width: 1680px;
+  height: 890px;
+}
+</style>

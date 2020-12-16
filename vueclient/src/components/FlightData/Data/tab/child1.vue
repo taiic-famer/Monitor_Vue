@@ -219,7 +219,7 @@ export default {
 }
 .row-bg {
   /* height: 96px; */
-  height: 10vh;
+  height: 95px;
   background-color: #515151;
 }
 .block {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <mermaid
       v-if="isReloadData"
       :nodes="data"
@@ -101,4 +101,7 @@ export default {
 }
 </script>
 <style scoped>
+.main {
+  height: 570px;
+}
 </style>

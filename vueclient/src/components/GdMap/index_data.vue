@@ -1,5 +1,5 @@
 <template>
-  <div id="app" style="height: 100%">
+ 
     <div class="amap-wrapper">
       <el-amap
         vid="amapContainer"
@@ -28,7 +28,7 @@
         ></el-amap-info-window>
       </el-amap>
     </div>
-  </div>
+ 
 </template>
 
 <script>

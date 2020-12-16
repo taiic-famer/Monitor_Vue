@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <h2>Prometheus查询</h2>
     <el-input
       type="textarea"
@@ -61,4 +61,8 @@ export default {
 </script>
 
 <style  scoped>
+.main {
+  width: 1680px;
+  height: 890px;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="main" class="main">
-    <el-row id="main" :gutter="5">
+    <el-row id="main" :gutter="5" style="height:562px;">
       <el-col id="main" class="gutter-row" :span="18">
         <div class="gutter-box1"><gdm></gdm></div>
       </el-col>
@@ -111,15 +111,18 @@ export default {
 <style scoped>
 .main {
   background-color: black;
+  width: 1680px;
+  height: 890px;
 }
 
 .gutter-box1 {
-  height: 60vh;
+  height: 562px;
   background-color: #fff;
   /* padding: 5px 0; */
 }
 .gutter-box2 {
   background-color: #fff;
   padding: 5px 0;
+  height: 323px;
 }
 </style>

@@ -178,6 +178,14 @@ export default {
 }
 .main {
   background-color: black;
+  width: 1680px;
+  height: 890px;
+}
+.gutter-row {
+  height: 890px;
+}
+.gutter-box {
+  height: 890px;
 }
 .button {
   position: absolute;
@@ -185,11 +193,7 @@ export default {
   left: 200px;
   z-index: 99;
 }
-.gutter-box {
-  height: 95vh;
-  background-color: #fff;
-  /* padding: 5px 0; */
-}
+
 .row {
   padding: 10px 0;
   background-color: #ffffff;

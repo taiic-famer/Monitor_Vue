@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <div class="category">分类显示</div>
     <el-row
       ><el-col :span="12">
@@ -122,6 +122,11 @@ export default {
 }
 </script>
 <style scoped>
+.main {
+  background-color: #fff;
+  height: 562px;
+  width: 100%;
+}
 .button {
   width: 70%;
 }
@@ -135,7 +140,7 @@ export default {
 .ul {
 
   padding: 20px;
-  line-height: 8vh;
+  line-height: 74px;
   font-weight: bold;
   font-size: 20px;
 }

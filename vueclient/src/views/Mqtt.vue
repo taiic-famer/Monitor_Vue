@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="main">
     <el-tabs value="msg" type="border-card">
       <el-tab-pane label="发送消息" name="msg">
         <el-row :gutter="100">
@@ -538,5 +538,9 @@ export default {
 .pull-right {
   float: right !important;
   margin-top: 20px;
+}
+.main {
+  width: 1680px;
+  height: 890px;
 }
 </style>
