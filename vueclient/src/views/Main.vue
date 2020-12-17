@@ -79,7 +79,8 @@
       </el-header> -->
 
       <el-main>
-        <router-view :key="$route.path"></router-view>
+        <keep-alive>
+        <router-view :key="$route.path"></router-view></keep-alive>
       </el-main>
     </el-container>
   </el-container>

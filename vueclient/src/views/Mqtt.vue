@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="main">
     <el-tabs value="msg" type="border-card">
-      <el-tab-pane label="发送消息" name="msg">
+      <el-tab-pane label="发送命令" name="msg">
         <el-row :gutter="100">
           <el-col :span="12">
             <div>
@@ -14,7 +14,7 @@
                   <template slot-scope="scope">
                     <el-checkbox
                       v-model="scope.row.checked"
-                      @change.native="getPlanesRow(scope.row)"
+                      @change.native="getMessagePlanesRow(scope.row)"
                     ></el-checkbox>
                   </template>
                 </el-table-column>
@@ -108,7 +108,7 @@
                       <template slot-scope="scope">
                         <el-checkbox
                           v-model="scope.row.checked"
-                          @change.native="getPlanesRow(scope.row)"
+                          @change.native="getMissionPlanesRow(scope.row)"
                         ></el-checkbox>
                       </template>
                     </el-table-column>
@@ -172,7 +172,7 @@
                       <template slot-scope="scope">
                         <el-checkbox
                           v-model="scope.row.checked"
-                          @change.native="getPlanesRow(scope.row)"
+                          @change.native="getImagePlanesRow(scope.row)"
                         ></el-checkbox>
                       </template>
                     </el-table-column>
@@ -215,11 +215,11 @@ var client = mqtt.connect('ws://192.168.61.31:1883')
 export default {
   data() {
     return {
+      nowTime: '', // 当前时间
       plane: [],
       isshow: false,
       messageList: [],
       selectMessage: [],
-      count: 0,
       fileList: [],
       model: {},
       msg: [],
@@ -241,7 +241,12 @@ export default {
       missions: [],
       images: [],
       dialogVisible: false,
-      planesMsg: [],
+      planesMessage: [], // 发送消息的无人机列表
+      messageCount: 0, // 发送消息的无人机数量
+      planesMission: [], // 发送任务的无人机列表
+      missionCount: 0, // 发送任务的无人机数量
+      planesImage: [], // 发送镜像的无人机列表
+      imageCount: 0, // 发送镜像的无人机数量
       missionMsg: [],
       imageMsg: [],
     }
@@ -256,10 +261,51 @@ export default {
     // this.mqttPlane()
   },
   components: {
-    gdm
+    gdm,
   },
 
   methods: {
+    // 获取时间
+    nowTimes() {
+      this.timeFormate(new Date())
+    },
+    // 显示当前时间（格式化）
+    timeFormate(timeStamp) {
+      let year = new Date(timeStamp).getFullYear()
+      let month =
+        new Date(timeStamp).getMonth() + 1 < 10
+          ? '0' + (new Date(timeStamp).getMonth() + 1)
+          : new Date(timeStamp).getMonth() + 1
+      let date =
+        new Date(timeStamp).getDate() < 10
+          ? '0' + new Date(timeStamp).getDate()
+          : new Date(timeStamp).getDate()
+      let hh =
+        new Date(timeStamp).getHours() < 10
+          ? '0' + new Date(timeStamp).getHours()
+          : new Date(timeStamp).getHours()
+      let mm =
+        new Date(timeStamp).getMinutes() < 10
+          ? '0' + new Date(timeStamp).getMinutes()
+          : new Date(timeStamp).getMinutes()
+      let ss =
+        new Date(timeStamp).getSeconds() < 10
+          ? '0' + new Date(timeStamp).getSeconds()
+          : new Date(timeStamp).getSeconds()
+      this.nowTime =
+        year +
+        '年' +
+        month +
+        '月' +
+        date +
+        '日' +
+        ' ' +
+        hh +
+        ':' +
+        mm +
+        ':' +
+        ss
+    },
     showAll() {
       // console.log(this.pubMessage.length)
       if (this.pubMessage.length == '0') {
@@ -307,19 +353,53 @@ export default {
       this.missionMsg = message
     },
 
-    getPlanesRow(message) {
-      // console.log(message)
+    getMessagePlanesRow(message) {
       if (message.checked) {
-        this.planesMsg.push(message.name)
-        this.count++
+        this.planesMessage.push(message.name)
+        this.messageCount++
       } else {
-        this.del(message.name)
-        this.count--
+        let listVar = new Array()
+        for (let i = 0; i < this.planesMessage.length; i++) {
+          listVar.push(this.planesMessage)
+          if (this.planesMessage[i] == message.name) {
+            listVar[i].splice(i, 1)
+          }
+        }
+        this.messageCount--
+      }
+    },
+    getMissionPlanesRow(message) {
+      if (message.checked) {
+        this.planesMission.push(message.name)
+        this.missionCount++
+      } else {
+        let listVar = new Array()
+        for (let i = 0; i < this.planesMission.length; i++) {
+          listVar.push(this.planesMission)
+          if (this.planesMission[i] == message.name) {
+            listVar[i].splice(i, 1)
+          }
+        }
+        this.missionCount--
+      }
+    },
+    getImagePlanesRow(message) {
+      if (message.checked) {
+        this.planesImage.push(message.name)
+        this.imageCount++
+      } else {
+        let listVar = new Array()
+        for (let i = 0; i < this.planesImage.length; i++) {
+          listVar.push(this.planesImage)
+          if (this.planesImage[i] == message.name) {
+            listVar[i].splice(i, 1)
+          }
+        }
+        this.imageCount--
       }
 
       // console.log(this.planesMsg)
     },
-
     async fetch() {
       const missions_res = await this.$http.get('rest/missions')
       this.missions = missions_res.data
@@ -338,8 +418,8 @@ export default {
 
     submitMsg(e) {
       let json = {}
-      for (var i = 0; i < this.planesMsg.length; i++) {
-        json[i] = this.planesMsg[i]
+      for (var i = 0; i < this.planesMessage.length; i++) {
+        json[i] = this.planesMessage[i]
       }
       var jsonData = JSON.stringify(json) // 转成JSON格式
       // var formInlineMsg1 = this.formInlineMsg.message + '+' + this.planesMsg
@@ -349,9 +429,9 @@ export default {
         `"type":"message","message":"` +
         this.pubMessage +
         `","planeList":{"num":` +
-        this.count +
+        this.messageCount +
         `,"list":"` +
-        this.planesMsg +
+        this.planesMessage +
         `"}}`
       // console.log(this.formInline);
       client.on('connect', (e) => {
@@ -363,6 +443,13 @@ export default {
         retain: true,
       })
 
+      let planeToMessage = new Object()
+      planeToMessage.plane = this.planesMessage
+      planeToMessage.message = this.pubMessage
+      this.nowTimes()
+      planeToMessage.time = this.nowTime
+      // console.log(planeToMessage)
+      this.$http.post('rest/planeToMessages', planeToMessage)
       Message({
         message: '发送成功',
         type: 'success',
@@ -371,8 +458,8 @@ export default {
 
     submitFile(e) {
       let json = {}
-      for (var i = 0; i < this.planesMsg.length; i++) {
-        json[i] = this.planesMsg[i]
+      for (var i = 0; i < this.planesMission.length; i++) {
+        json[i] = this.planesMission[i]
       }
       var jsonData = JSON.stringify(json) // 转成JSON格式
 
@@ -386,9 +473,9 @@ export default {
         `","size":` +
         this.missionMsg.size +
         `},"planeList":{"num":` +
-        this.count +
+        this.missionCount +
         `,"list":"` +
-        this.planesMsg +
+        this.planesMission +
         `"}}`
       // const message = this.missionMsg.url + '+' + this.missionMsg.title
       client.on('connect', (e) => {
@@ -399,6 +486,14 @@ export default {
         qos: 1,
         retain: true,
       })
+      let planeToMission = new Object()
+      planeToMission.plane = this.planesMission
+      planeToMission.mission = this.missionMsg.title
+      planeToMission.url = this.missionMsg.url
+      this.nowTimes()
+      planeToMission.time = this.nowTime
+
+      this.$http.post('rest/planeToMissions', planeToMission)
       Message({
         message: '发送成功',
         type: 'success',
@@ -407,8 +502,8 @@ export default {
 
     submitImage(e) {
       let json = {}
-      for (var i = 0; i < this.planesMsg.length; i++) {
-        json[i] = this.planesMsg[i]
+      for (var i = 0; i < this.planesImage.length; i++) {
+        json[i] = this.planesImage[i]
       }
       var jsonData = JSON.stringify(json) // 转成JSON格式
       // console.log(this.planesMsg.length)
@@ -425,9 +520,9 @@ export default {
         `},"planList":{"num":` +
         this.count +
         `,"list":"` +
-        this.planesMsg +
+        this.planesImage +
         `"}}`
-      console.log(this.count)
+
       client.on('connect', (e) => {
         console.log('发布连接成功！！！')
       })
@@ -436,7 +531,14 @@ export default {
         qos: 1,
         retain: true,
       })
+      let planeToImage = new Object()
+      planeToImage.plane = this.planesImage
+      planeToImage.image = this.imageMsg.title
+      planeToImage.url = this.imageMsg.url
+      this.nowTimes()
+      planeToImage.time = this.nowTime
 
+      this.$http.post('rest/planeToImage', planeToImage)
       Message({
         message: '发送成功',
         type: 'success',
@@ -547,6 +649,6 @@ export default {
   /* min-width: 1680px;
   min-height: 890px; */
   height: 890px;
-  min-width:1680px;
+  min-width: 1680px;
 }
 </style>
