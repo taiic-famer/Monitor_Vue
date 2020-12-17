@@ -9,6 +9,7 @@ export default {
     } else {
       state.currentPlane = payload
     }
+    state.mapSize = 17
 
   },
   updatePlaneData(state, payload) {
