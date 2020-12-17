@@ -7,6 +7,7 @@ git clone https://github.com/taiic-famer/Monitor_Vue.git
 ```
 
 2、第三方插件安装
+
 MQTT：
 进入mqtt目录```cd mqtt```安装插件 ```npm i```
 
@@ -18,6 +19,7 @@ Vue前端
 
 
 3、运行mqtt服务器
+
 ```cd mqtt ```
 
 将目录node_modules\jsonschema\lib下的validator.js文件107行throw new SchemaError('Expected `schema` to be an object or boolean');注释掉
@@ -25,11 +27,13 @@ Vue前端
 ```npm mqtt.js```
 
 4、运行Web服务器
+
 ```cd server ```
 
 ```npm run serve ```
 
 5、运行vue前端
+
 ```cd vueclient ```
 
 ```npm run dev ```
