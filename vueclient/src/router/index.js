@@ -6,6 +6,7 @@ import PlanePlan from '../views/PlanePlan.vue'
 import MetricData from '../views/MetricData.vue'
 import MetricCheck from '../views/MetricCheck.vue'
 import Mqtt from '../views/Mqtt.vue'
+import PlaneToMission from '../views/PlaneToMission.vue'
 import MessageEdit from '../views/MessageEdit.vue'
 import MessageList from '../views/MessageList.vue'
 import PlaneEdit from '../views/PlaneEdit.vue'
@@ -57,7 +58,10 @@ const routes = [
 				path: '/mqtt',
 				component: Mqtt
 			},
-
+      {
+				path: '/planeToMission',
+				component: PlaneToMission
+			},
 			{
 				path: '/messages/create',
 				component: MessageEdit

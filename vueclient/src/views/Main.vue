@@ -27,6 +27,10 @@
             <!-- <template slot="title">mqtt</template> -->
             <el-menu-item index="/mqtt">任务部署</el-menu-item>
           </el-menu-item-group>
+           <el-menu-item-group>
+            <!-- <template slot="title">mqtt</template> -->
+            <el-menu-item index="/planeToMission">部署查询</el-menu-item>
+          </el-menu-item-group>
         </el-submenu>
         <el-submenu index="3">
           <template slot="title"
