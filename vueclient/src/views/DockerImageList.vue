@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <h1>镜像列表</h1>
     <div v-if="isReloadData">
       <el-table :data="items">
@@ -91,5 +91,9 @@ export default {
 .block {
   position: fixed;
   bottom: 50px;
+}
+.main {
+  min-width: 1120px;
+  min-height: 593.3;
 }
 </style>

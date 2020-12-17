@@ -1,11 +1,11 @@
 <template>
   <div id="main" class="main">
-    <el-row id="main" :gutter="5" style="height:562px;">
+    <el-row id="main" :gutter="5" style="height: 562px">
       <el-col id="main" class="gutter-row" :span="18">
-        <div class="gutter-box1"><gdm></gdm></div>
+        <div class="left"><gdm></gdm></div>
       </el-col>
       <el-col class="gutter-row" :span="6">
-        <div class="gutter-box1">
+        <div class="right">
           <right />
         </div>
       </el-col>
@@ -13,7 +13,7 @@
     <div style="height: 5px; background-color: black"></div>
     <el-row id="main" :gutter="5">
       <el-col id="main" :span="24">
-        <div class="gutter-box2">
+        <div class="bottom">
           <el-table
             :row-class-name="tableRowClassName"
             :row-style="selectedstyle"
@@ -70,12 +70,11 @@ export default {
     tableRowClassName({ row, rowIndex }) {
       row.index = rowIndex
       let num = getIndex.length
-      getIndex.splice(0,num)
+      getIndex.splice(0, num)
       if (this.$store.state.currentPlane.some((value) => value == row.IP)) {
         getIndex.push(row.index)
       }
       // console.log(getIndex)
-      
     },
     rowClick(row) {
       getIndex.push(row.index)
@@ -114,13 +113,17 @@ export default {
   width: 1680px;
   height: 890px;
 }
-
-.gutter-box1 {
+.left {
+  height: 562px;
+  width: 1260px;
+}
+.right {
   height: 562px;
   background-color: #fff;
   /* padding: 5px 0; */
 }
-.gutter-box2 {
+
+.bottom {
   background-color: #fff;
   padding: 5px 0;
   height: 323px;

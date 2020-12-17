@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <el-dialog title="镜像数据" :visible.sync="dialogVisible" width="30%">
       <el-form label-width="120px" @submit.native.prevent="save">
         <el-form-item label="编号">
@@ -75,5 +75,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.main {
+  min-width: 1120px;
+  min-height: 593.3;
+}
 </style>

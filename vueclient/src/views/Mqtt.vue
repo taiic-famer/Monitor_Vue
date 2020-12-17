@@ -202,12 +202,13 @@
 
     <div style="height: 50px"></div>
     <h3>消息订阅</h3>
-    <div style="height: 2px; background-color: black"></div>
+    <div style="height: 2px; background-color: black"><gdm></gdm></div>
     <h3>{{ subMessage }}</h3>
   </div>
 </template>
 
 <script>
+import gdm from '../components/GdMap/index_data'
 import mqtt from 'mqtt'
 import { Message } from 'element-ui'
 var client = mqtt.connect('ws://192.168.61.31:1883')
@@ -253,6 +254,9 @@ export default {
     this.fetch()
     // this.mqttPlanes()
     // this.mqttPlane()
+  },
+  components: {
+    gdm
   },
 
   methods: {
@@ -540,7 +544,9 @@ export default {
   margin-top: 20px;
 }
 .main {
-  width: 1680px;
-  height: 890px;
+  /* min-width: 1680px;
+  min-height: 890px; */
+  min-height: 593px;
+  min-width: 1120px;
 }
 </style>
