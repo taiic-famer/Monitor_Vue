@@ -109,6 +109,6 @@ export default {
   /* width: 1680px;
   height: 890px; */
   min-width: 1120px;
-  min-height: 593px;
+  height: 920px;
 }
 </style>

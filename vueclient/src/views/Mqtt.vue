@@ -538,7 +538,7 @@ export default {
   },
 }
 </script>
-<style scope>
+<style scoped>
 .pull-right {
   float: right !important;
   margin-top: 20px;
@@ -546,7 +546,7 @@ export default {
 .main {
   /* min-width: 1680px;
   min-height: 890px; */
-  min-height: 593px;
-  min-width: 1120px;
+  height: 890px;
+  min-width:1680px;
 }
 </style>

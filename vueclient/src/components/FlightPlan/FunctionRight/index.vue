@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="right">
     <div class="category">分类显示</div>
     <el-row
       ><el-col :span="12">
@@ -122,7 +122,7 @@ export default {
 }
 </script>
 <style scoped>
-.main {
+.right {
   background-color: #fff;
   height: 562px;
   width: 100%;

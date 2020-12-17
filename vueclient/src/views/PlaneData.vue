@@ -1,8 +1,8 @@
 <template>
-  <div id="main" class="main">
-    <a-row id="main" :gutter="5">
-      <a-col id="main" class="gutter-row" :span="$store.state.mapSize">
-        <div class="gutter-box"><gdm></gdm></div>
+  <div  class="main">
+    <a-row  :gutter="5">
+      <a-col :span="$store.state.mapSize">
+        <div class="gdm"><gdm></gdm></div>
       </a-col>
       <a-col class="gutter-row" :span="7" v-if="$store.state.currentPlane[0]">
         <div class="gutter-box">
@@ -50,8 +50,8 @@
               </el-col></el-row
             >
           </div>
-           <div style="width: 100%; height: 0px; border-top: 5px black solid" />
-          <child></child>
+           <div style="width: 100%; height: 5px; black solid" />
+          <child class="right_bottom"></child>
         </div>
       </a-col>
     </a-row>
@@ -178,14 +178,15 @@ export default {
 }
 .main {
   background-color: black;
-  width: 1680px;
-  height: 890px;
+  min-width: 1680px;
+  height: 920px;
 }
-.gutter-row {
-  height: 890px;
+
+.gdm {
+  height: 920px;
 }
-.gutter-box {
-  height: 890px;
+.right_bottom {
+  height: 670px;
 }
 .button {
   position: absolute;

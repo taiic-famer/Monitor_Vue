@@ -1,7 +1,7 @@
 <template>
   <div>
     
-    <div>
+    <div class="main">
       <a-row class="row-bg">
         <a-col :span="11">
           <div class="grid-content title">无人机名称</div>
@@ -174,7 +174,9 @@ export default {
 }
 </script>
 <style  scoped>
-
+.main {
+  width: 100%;
+}
 
 .grid-content {
   padding: 20px;
@@ -219,7 +221,7 @@ export default {
 }
 .row-bg {
   /* height: 96px; */
-  height: 95px;
+  height: 100px;
   background-color: #515151;
 }
 .block {

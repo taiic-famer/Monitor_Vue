@@ -1,45 +1,40 @@
 <template>
-  <div id="main" class="main">
-    <el-row id="main" :gutter="5" style="height: 562px">
-      <el-col id="main" class="gutter-row" :span="18">
-        <div class="left"><gdm></gdm></div>
+  <div class="main">
+    <el-row :gutter="5">
+      <el-col :span="18" class="left">
+        <gdm></gdm>
       </el-col>
-      <el-col class="gutter-row" :span="6">
-        <div class="right">
-          <right />
-        </div>
+      <el-col :span="6" class="right">
+        <right></right>
       </el-col>
     </el-row>
-    <div style="height: 5px; background-color: black"></div>
-    <el-row id="main" :gutter="5">
-      <el-col id="main" :span="24">
-        <div class="bottom">
-          <el-table
-            :row-class-name="tableRowClassName"
-            :row-style="selectedstyle"
-            @row-click="rowClick"
-            :default-sort="{ prop: 'name', order: 'ascending' }"
-            :data="$store.state.planeData"
-          >
-            <el-table-column prop="name" label="name"> </el-table-column>
-            <el-table-column prop="IP" label="IP"> </el-table-column>
-            <el-table-column prop="type" label="类型"> </el-table-column>
-            <el-table-column prop="longitude" label="经度"> </el-table-column>
-            <el-table-column prop="latitude" label="纬度"> </el-table-column>
-            <el-table-column prop="altitude" label="高度"> </el-table-column>
-            <el-table-column prop="speed" label="水平速度"> </el-table-column>
-            <el-table-column prop="verticalSpeed" label="垂直速度">
-            </el-table-column>
-            <el-table-column prop="pitch" label="俯仰角"> </el-table-column>
-            <el-table-column prop="roll" label="横滚角"> </el-table-column>
-            <el-table-column prop="yaw" label="偏航角"> </el-table-column>
-            <el-table-column prop="state" label="状态"> </el-table-column>
-            <el-table-column prop="mission" label="状态"> </el-table-column>
-            <el-table-column prop="battery" label="电池电量"> </el-table-column>
-          </el-table>
-        </div>
-      </el-col>
-    </el-row>
+    <div style="height: 5px; width: 100% background-color: black"></div>
+
+    <div class="bottom">
+      <el-table
+        :row-class-name="tableRowClassName"
+        :row-style="selectedstyle"
+        @row-click="rowClick"
+        :default-sort="{ prop: 'name', order: 'ascending' }"
+        :data="$store.state.planeData"
+      >
+        <el-table-column prop="name" label="name"> </el-table-column>
+        <el-table-column prop="IP" label="IP"> </el-table-column>
+        <el-table-column prop="type" label="类型"> </el-table-column>
+        <el-table-column prop="longitude" label="经度"> </el-table-column>
+        <el-table-column prop="latitude" label="纬度"> </el-table-column>
+        <el-table-column prop="altitude" label="高度"> </el-table-column>
+        <el-table-column prop="speed" label="水平速度"> </el-table-column>
+        <el-table-column prop="verticalSpeed" label="垂直速度">
+        </el-table-column>
+        <el-table-column prop="pitch" label="俯仰角"> </el-table-column>
+        <el-table-column prop="roll" label="横滚角"> </el-table-column>
+        <el-table-column prop="yaw" label="偏航角"> </el-table-column>
+        <el-table-column prop="state" label="状态"> </el-table-column>
+        <el-table-column prop="mission" label="状态"> </el-table-column>
+        <el-table-column prop="battery" label="电池电量"> </el-table-column>
+      </el-table>
+    </div>
   </div>
 </template>
 
@@ -110,22 +105,22 @@ export default {
 <style scoped>
 .main {
   background-color: black;
-  width: 1680px;
-  height: 890px;
+  min-width: 1680px;
+  min-height: 910px;
 }
 .left {
   height: 562px;
-  width: 1260px;
+ 
 }
 .right {
   height: 562px;
-  background-color: #fff;
+  /* background-color: #fff; */
   /* padding: 5px 0; */
 }
 
 .bottom {
   background-color: #fff;
   padding: 5px 0;
-  height: 323px;
+  height: 345px;
 }
 </style>

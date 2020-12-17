@@ -77,7 +77,7 @@ export default {
 
 <style scoped>
 .main {
-  min-width: 1120px;
-  min-height: 593.3;
+  min-width: 1680px;
+  height: 920px;
 }
 </style>
