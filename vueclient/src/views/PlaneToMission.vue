@@ -1,66 +1,74 @@
 <template>
   <div class="main">
-    <el-tabs value="message" type="border-card">
-      <el-tab-pane label="命令" name="message">
-        <el-table :data="message">
-          <el-table-column prop="message" label="命令"> </el-table-column>
-          <el-table-column prop="plane" label="无人机"> </el-table-column>
-          <el-table-column prop="time" label="时间"> </el-table-column>
-          <el-table-column fixed="right" label="操作" width="180">
-            <template slot-scope="scope">
-              <el-button
-                type="text"
-                size="small"
-                @click="removeMessage(scope.row)"
-                >删除</el-button
-              >
-            </template>
-          </el-table-column>
-        </el-table>
-      </el-tab-pane></el-tabs
-    >
+    <div class="messagebox">
+      <el-tabs value="message" type="border-card">
+        <el-tab-pane label="命令" name="message" class="messagetabs">
+          <el-table :data="message">
+            <el-table-column prop="message" label="命令"> </el-table-column>
+            <el-table-column prop="plane" label="无人机"> </el-table-column>
+            <el-table-column prop="time" label="时间"> </el-table-column>
+            <el-table-column fixed="right" label="操作" width="180">
+              <template slot-scope="scope">
+                <el-button
+                  type="text"
+                  size="small"
+                  @click="removeMessage(scope.row)"
+                  >删除</el-button
+                >
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-tab-pane></el-tabs
+      >
+    </div>
+
     <div style="height: 10px"></div>
-    <el-tabs value="mission" type="border-card">
-      <el-tab-pane label="任务" name="mission"
-        ><el-table :data="mission">
-          <el-table-column prop="mission" label="任务"> </el-table-column>
-          <el-table-column prop="plane" label="无人机"> </el-table-column>
-          <el-table-column prop="url" label="任务文件地址"> </el-table-column>
-          <el-table-column prop="time" label="时间"> </el-table-column>
-          <el-table-column fixed="right" label="操作" width="180">
-            <template slot-scope="scope">
-              <el-button
-                type="text"
-                size="small"
-                @click="removeMission(scope.row)"
-                >删除</el-button
-              >
-            </template>
-          </el-table-column>
-        </el-table>
-      </el-tab-pane></el-tabs
-    >
+    <div class="missionbox">
+      <el-tabs value="mission" type="border-card">
+        <el-tab-pane label="任务" name="mission"
+          ><el-table :data="mission">
+            <el-table-column prop="mission" label="任务"> </el-table-column>
+            <el-table-column prop="plane" label="无人机"> </el-table-column>
+            <el-table-column prop="url" label="任务文件地址"> </el-table-column>
+            <el-table-column prop="time" label="时间"> </el-table-column>
+            <el-table-column fixed="right" label="操作" width="180">
+              <template slot-scope="scope">
+                <el-button
+                  type="text"
+                  size="small"
+                  @click="removeMission(scope.row)"
+                  >删除</el-button
+                >
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-tab-pane></el-tabs
+      >
+    </div>
+
     <div style="height: 10px"></div>
-    <el-tabs value="image" type="border-card">
-      <el-tab-pane label="镜像" name="image"
-        ><el-table :data="image">
-          <el-table-column prop="image" label="镜像"> </el-table-column>
-          <el-table-column prop="plane" label="无人机"> </el-table-column>
-          <el-table-column prop="url" label="镜像文件地址"> </el-table-column>
-          <el-table-column prop="time" label="时间"> </el-table-column>
-          <el-table-column fixed="right" label="操作" width="180">
-            <template slot-scope="scope">
-              <el-button
-                type="text"
-                size="small"
-                @click="removeImage(scope.row)"
-                >删除</el-button
-              >
-            </template>
-          </el-table-column>
-        </el-table>
-      </el-tab-pane></el-tabs
-    >
+    <div class="imagebox">
+      <el-tabs value="image" type="border-card">
+        <el-tab-pane label="镜像" name="image"
+          ><el-table :data="image">
+            <el-table-column prop="image" label="镜像"> </el-table-column>
+            <el-table-column prop="plane" label="无人机"> </el-table-column>
+            <el-table-column prop="url" label="镜像文件地址"> </el-table-column>
+            <el-table-column prop="time" label="时间"> </el-table-column>
+            <el-table-column fixed="right" label="操作" width="180">
+              <template slot-scope="scope">
+                <el-button
+                  type="text"
+                  size="small"
+                  @click="removeImage(scope.row)"
+                  >删除</el-button
+                >
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-tab-pane></el-tabs
+      >
+    </div>
   </div>
 </template>
 
@@ -136,5 +144,16 @@ export default {
 .main {
   height: 890px;
   min-width: 1680px;
+}
+</style>
+<style>
+.messagebox .el-tabs__nav-scroll {
+  background-color: #284253;
+}
+.missionbox .el-tabs__nav-scroll {
+  background-color: #E0542E;
+}
+.imagebox .el-tabs__nav-scroll {
+  background-color: #EF8C12;
 }
 </style>
