@@ -60,8 +60,8 @@ export default {
         res = await this.$http.post('rest/images', this.model)
       }
       this.dialogVisible = false
-      // this.$router.push('/images/list')
-      this.print()
+      this.$router.push('/images/list')
+      
     },
     async fetch() {
       const res = await this.$http.get(`rest/images/${this.id}`)

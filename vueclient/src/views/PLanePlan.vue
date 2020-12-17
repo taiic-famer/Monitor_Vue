@@ -106,7 +106,7 @@ export default {
 .main {
   background-color: black;
   min-width: 1680px;
-  min-height: 910px;
+  height: 910px;
 }
 .left {
   height: 562px;
