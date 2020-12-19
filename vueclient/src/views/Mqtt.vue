@@ -202,7 +202,7 @@
 
     <div style="height: 50px"></div>
     <h3>消息订阅</h3>
-    <div style="height: 2px; background-color: black"><gdm></gdm></div>
+    <div style="height: 2px; background-color: black"><gdm v-show="false"></gdm></div>
     <h3>{{ subMessage }}</h3>
   </div>
 </template>
