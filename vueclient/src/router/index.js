@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
 import PlaneData from '../views/PlaneData.vue'
 import PlanePlan from '../views/PlanePlan.vue'
+import Gazebo from '../views/Gazebo.vue'
 import MetricData from '../views/MetricData.vue'
 import MetricCheck from '../views/MetricCheck.vue'
 import Mqtt from '../views/Mqtt.vue'
@@ -45,6 +46,10 @@ const routes = [
 			{
 				path: '/planes/plan',
 				component: PlanePlan
+      },
+      {
+				path: '/gazebo',
+				component: Gazebo
 			},
 			{
 				path: '/metrics/data',

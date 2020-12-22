@@ -13,6 +13,10 @@
             <el-menu-item index="/planes/plan">飞行计划</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
+            <template slot="title">Gazebo</template>
+            <el-menu-item index="/gazebo">Gazebo</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group>
             <template slot="title">服务器监控</template>
             <el-menu-item index="/metrics/data">服务器监控</el-menu-item>
             <el-menu-item index="/metrics/check">监控数据查询</el-menu-item>
@@ -78,7 +82,7 @@
         </el-dropdown>
       </el-header> -->
 
-      <el-main>
+      <el-main class="main"> 
         <keep-alive>
         <router-view :key="$route.path"></router-view></keep-alive>
       </el-main>
@@ -97,6 +101,9 @@ export default {
 </script>
 
 <style>
+.main {
+  /* padding: 0; */
+}
 .el-header {
   background-color: #b3c0d1;
   color: #333;
