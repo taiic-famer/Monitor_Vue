@@ -1,12 +1,12 @@
 <template>
   <div class="main">
-    <mermaid
-      v-if="isReloadData"
-      :nodes="data"
-      type="graph TB"
-      @nodeClick="editNode"
-    ></mermaid>
-    <button @click="change">color</button>
+    <mermaid :nodes="data" type="graph TB" @nodeClick="editNode"></mermaid>
+    <button @click="change(0)">0</button>
+    <button @click="change(1)">1</button>
+    <button @click="change(2)">2</button>
+    <button @click="change(3)">3</button>
+    <button @click="change(4)">4</button>
+    <button @click="change(5)">5</button>
   </div>
 </template>
 <script>
@@ -14,9 +14,36 @@ import mermaid from './mermaid'
 export default {
   data() {
     return {
-      isReloadData: true,
       color: [],
-      data: [],
+      data: [
+        {
+          id: '0',
+          text: 'mission 1',
+          next: ['1', '2'],
+        },
+        {
+          id: '1',
+          text: 'charge',
+          edgeType: 'circle',
+        },
+        {
+          id: '2',
+          text: 'Action',
+          next: ['3', '4', '5'],
+        },
+        {
+          id: '3',
+          text: 'Cover and search',
+        },
+        {
+          id: '4',
+          text: 'communication',
+        },
+        {
+          id: '5',
+          text: 'attack',
+        },
+      ],
     }
   },
   components: {
@@ -25,66 +52,28 @@ export default {
   mounted() {
     this.init()
   },
-  
+
   methods: {
     init() {
-      this.data = [
-        {
-          id: '1',
-          text: 'mission 1',
-          link: '---',
-          next: ['2', '3'],
-
-          editable: true,
-          style: 'fill:,stroke:#333,stroke-width:4px',
-          color: this.color[1],
-        },
-        {
-          id: '2',
-          text: 'charge',
-          edgeType: 'circle',
-
-          editable: true,
-          style: 'fill:,stroke:#333,stroke-width:4px',
-          color: this.color[2],
-        },
-        {
-          id: '3',
-          text: 'Action',
-          next: ['4', '5', '6'],
-          editable: true,
-          style: 'fill:,stroke:#333,stroke-width:4px',
-          color: this.color[3],
-        },
-        {
-          id: '4',
-          text: 'Cover and search',
-          editable: true,
-          style: 'fill:,stroke:#333,stroke-width:4px',
-          color: this.color[4],
-        },
-        {
-          id: '5',
-          text: 'communication',
-          editable: true,
-          style: 'fill:,stroke:#333,stroke-width:4px',
-          color: this.color[5],
-        },
-        {
-          id: '6',
-          text: 'attack',
-          editable: true,
-          style: 'fill:,stroke:#333,stroke-width:4px',
-          color: this.color[6],
-        },
-      ]
+      for (let i = 0; i < this.data.length; i++) {
+        this.$set(this.data[i], 'link', '-->')
+        this.$set(this.data[i], 'editable', true)
+        this.$set(this.data[i], 'style', 'fill:,stroke:#333,stroke-width:4px')
+        this.$set(this.data[i], 'color', this.color[i])
+      }
+      // console.log(this.data)
     },
-    change() {
-    //   this.color[2]
-      this.color[5] = 'red'
-      console.log(this.color[2])
+    change(n) {
+      for (let i = 0; i < this.data.length; i++) {
+        if (i == n) {
+          this.color[i] = 'red'
+        } else {
+          this.color[i] = ''
+        }
+      }
       this.init()
     },
+    
     editNode(node) {
       let num = this.data.length
       this.color[2] = 'red'
