@@ -19,7 +19,8 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 import VueMermaid from "vue-mermaid";
-
+import x2js from 'x2js' //xml数据处理插件
+Vue.prototype.$x2js = new x2js() //全局方法挂载
 Vue.use(VueMermaid);
 Vue.use(VueQuillEditor);
 
