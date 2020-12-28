@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <el-dialog title="镜像数据" :visible.sync="dialogVisible" width="30%">
+    <el-dialog title="镜像数据" :visible.sync="dialogVisible" width="640px">
       <el-form label-width="120px" @submit.native.prevent="save">
         <el-form-item label="编号">
           <el-input v-model="model.num"></el-input>

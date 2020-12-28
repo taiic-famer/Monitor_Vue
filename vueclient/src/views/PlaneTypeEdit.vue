@@ -3,7 +3,7 @@
     <el-button type="primary" plain @click="dialogVisible = true"
       ><h3>{{ id ? '编辑' : '添加' }}无人机类型</h3></el-button
     >
-    <el-dialog title="无人机类型" :visible.sync="dialogVisible" width="30%">
+    <el-dialog title="无人机类型" :visible.sync="dialogVisible" width="640px">
       <el-form label-width="120px" @submit.native.prevent="save">
         <el-form-item label="无人机类型">
           <el-input v-model="model.type"></el-input>

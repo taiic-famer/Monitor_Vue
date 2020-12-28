@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <el-dialog title="消息数据" :visible.sync="dialogVisible" width="30%">
+    <el-dialog title="消息数据" :visible.sync="dialogVisible" width="640px">
       <el-tabs value="1">
         <el-tab-pane label="添加消息" name="1">
           <el-form label-width="40px" @submit.native.prevent="save">

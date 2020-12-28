@@ -3,7 +3,7 @@
     <!-- <el-button type="primary" plain @click="dialogVisible = true"
       ><h3>{{ id ? '编辑' : '添加' }}无人机</h3></el-button
     > -->
-    <el-dialog title="无人机数据" :visible.sync="dialogVisible" width="30%">
+    <el-dialog title="无人机数据" :visible.sync="dialogVisible" width="640px">
       <el-tabs value="1">
         <el-tab-pane label="添加无人机" name="1"
           ><el-form label-width="85px" @submit.native.prevent="save">
