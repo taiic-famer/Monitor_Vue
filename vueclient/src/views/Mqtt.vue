@@ -518,7 +518,7 @@ export default {
         `","size":` +
         this.imageMsg.size +
         `},"planList":{"num":` +
-        this.count +
+        this.imageCount +
         `,"list":"` +
         this.planesImage +
         `"}}`
