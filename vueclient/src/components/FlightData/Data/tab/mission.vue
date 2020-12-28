@@ -7,13 +7,31 @@
     <button @click="change(3)">3</button>
     <button @click="change(4)">4</button>
     <button @click="change(5)">5</button>
-    <el-upload
-      :action="$http.defaults.baseURL + '/upload'"
-      list-type="file"
-      :on-success="afterUploadFile"
+    <br>
+    <el-button
+      @click="
+        file(
+          'http://192.168.61.31:3000/upload/cb31124a4b031f47f42100db87c497a0'
+        )
+      "
+      >FirstBT</el-button
     >
-      <el-button size="small" type="primary">点击上传</el-button>
-    </el-upload>
+    <el-button
+      @click="
+        file(
+          'http://192.168.61.31:3000/upload/2d49b0310a81dc4d5db864b1b57b962f'
+        )
+      "
+      >SecondBT</el-button
+    >
+    <el-button
+      @click="
+        file(
+          'http://192.168.61.31:3000/upload/0fecba091eba3c00ed23fc458e7e08ba'
+        )
+      "
+      >subtree_task</el-button
+    >
   </div>
 </template>
 <script>
@@ -61,6 +79,21 @@ export default {
       }
       this.init()
     },
+    addEdgeType(obj){
+      switch (obj._class) {
+        case 'Selector':
+          return 'rhombus';
+          break;
+        case 'Task':
+          return 'round';
+          break;
+        case 'Sequence':
+          return 'asymetric';
+          break;
+        default:
+          return 'default'
+      }
+    },
     findId(obj, arr) {
       if (!obj.node) {
         if (obj._id != arr[arr.length - 1]) {
@@ -78,7 +111,8 @@ export default {
           console.log('1-' + obj._id + this.counter)
           this.$set(this.data[this.counter], 'id', obj._id)
           this.$set(this.data[this.counter], 'text', obj._id)
-
+          this.$set(this.data[this.counter], 'edgeType', this.addEdgeType(obj))
+          
           this.counter++
           arr.push(obj._id)
         }
@@ -104,7 +138,7 @@ export default {
             console.log('2-' + item._id + this.counter)
             this.$set(this.data[this.counter], 'id', item._id)
             this.$set(this.data[this.counter], 'text', item._id)
-
+            this.$set(this.data[this.counter], 'edgeType', this.addEdgeType(item))
             this.counter++
             arr.push(item._id)
             this.findId(item, arr)
@@ -124,7 +158,7 @@ export default {
           console.log('3-' + obj.node._id + this.counter)
           this.$set(this.data[this.counter], 'id', obj.node._id)
           this.$set(this.data[this.counter], 'text', obj.node._id)
-
+          this.$set(this.data[this.counter], 'edgeType', this.addEdgeType(obj.node))
           this.counter++
           arr.push(obj.node._id)
           this.findId(obj.node, arr)
@@ -132,15 +166,13 @@ export default {
       }
     },
 
-    afterUploadFile(res) {
+    file(url) {
       this.data = new Array()
-      
-      console.log(res.url)
       var _this = this
       _this.$http.defaults.headers.post['Content-Type'] =
         'application/json; charset=UTF-8'
       _this.$http
-        .get(res.url)
+        .get(url)
         .then(async function (response) {
           const result = response.data
 
@@ -151,7 +183,7 @@ export default {
           // _this.data = _this.$options.data().data
           // console.log( _this.data)
           // console.log(xml.behavior.node._id)
-          _this.counter =0
+          _this.counter = 0
           if (jsonObj.behavior) {
             let arr = []
             _this.findId(jsonObj.behavior, arr)
@@ -160,7 +192,6 @@ export default {
             // _this.jsonToData(arr)
             // console.log(_this.data)
             _this.init()
-            
           }
         })
         .catch(function (err) {
