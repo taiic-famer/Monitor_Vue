@@ -100,10 +100,8 @@ export default {
 }
 </script>
 
-<style>
-.main {
-  /* padding: 0; */
-}
+<style >
+
 .el-header {
   background-color: #b3c0d1;
   color: #333;
