@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Antd from 'ant-design-vue';
+import axios from 'axios'
 import 'ant-design-vue/dist/antd.css';
 import './assets/icon/iconfont.css'
 
@@ -25,7 +26,11 @@ Vue.use(VueMermaid);
 Vue.use(VueQuillEditor);
 
 Vue.config.productionTip = false;
+const upload = axios.create({
+  baseURL: 'http://192.168.61.31:3000',
 
+})
+Vue.prototype.$axios = upload
 Vue.prototype.$http = http
 Vue.use(VueAMap);
 

@@ -40,18 +40,23 @@ module.exports = app => {
     next()
   }, router)
 
-  const multer = require('multer')
-  // const fs = require('fs');
-  // const path = require('path');
-  const upload = multer({ dest: __dirname + '/../../uploads' })
+  // const multer = require('multer')
+  // // const fs = require('fs');
+  // // const path = require('path');
+  // const upload = multer({
+  //   dest: __dirname + '/../../uploads',
+  //   limits: {
+  //     fieldSize: 10 * 1000 * 1000 * 1000
+  //   }
+  // })
 
-  // 允许接口接收上传文件
-  app.post('/admin/api/upload', upload.single('file'), async (req, res) => {
-    const file = req.file
+  // // 允许接口接收上传文件
+  // app.post('/admin/api/upload', upload.single('file'), async (req, res) => {
+  //   const file = req.file
 
-    file.url = `http://192.168.61.31:3000/upload/${file.filename}`
-    res.send(file)
+  //   file.url = `http://192.168.61.31:3000/upload/${file.filename}`
+  //   res.send(file)
 
-  })
+  // })
 
 }
