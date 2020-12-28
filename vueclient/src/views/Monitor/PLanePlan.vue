@@ -42,9 +42,9 @@
 let getIndex = new Array()
 import mqtt from 'mqtt'
 var client = mqtt.connect('ws://192.168.61.31:1883')
-import gdm from '../components/GdMap/index_data'
-import mission from '../components/FlightData/Data/tab/mission'
-import right from '../components/FlightPlan/FunctionRight/index'
+import gdm from '../../components/GdMap/index_data'
+import mission from '../../components/FlightData/Data/tab/mission'
+import right from '../../components/FlightPlan/FunctionRight/index'
 export default {
   data() {
     return {

@@ -10,7 +10,7 @@
             <el-row
               ><el-col :span="12"
                 ><img
-                  src="../assets/images/turn_coordinator.svg"
+                  src="../../assets/images/turn_coordinator.svg"
                   style="width: 200px" />
                 <img
                   :src="airplaneUrl"
@@ -88,18 +88,18 @@
       </el-dialog>
 
       <el-button  type="text" @click="button" class="button">
-        <img src="../assets/images/fold.png" alt="" />
+        <img src="../../assets/images/fold.png" alt="" />
       </el-button>
     </div>
   </div>
 </template>
 
 <script>
-import gdm from '../components/GdMap/index_data'
-import child from '../components/FlightData/Data/index'
-import airplanem from '../assets/images/fi_tc_airplane_m.svg'
-import airplanel from '../assets/images/fi_tc_airplane_l.svg'
-import airplaner from '../assets/images/fi_tc_airplane_r.svg'
+import gdm from '../../components/GdMap/index_data'
+import child from '../../components/FlightData/Data/index'
+import airplanem from '../../assets/images/fi_tc_airplane_m.svg'
+import airplanel from '../../assets/images/fi_tc_airplane_l.svg'
+import airplaner from '../../assets/images/fi_tc_airplane_r.svg'
 export default {
   data() {
     return {

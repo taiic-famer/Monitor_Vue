@@ -208,7 +208,7 @@
 </template>
 
 <script>
-import gdm from '../components/GdMap/index_data'
+import gdm from '../../components/GdMap/index_data'
 import mqtt from 'mqtt'
 import { Message } from 'element-ui'
 var client = mqtt.connect('ws://192.168.61.31:1883')
