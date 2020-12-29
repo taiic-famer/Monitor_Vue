@@ -31,7 +31,7 @@
         <el-table-column prop="roll" label="横滚角"> </el-table-column>
         <el-table-column prop="yaw" label="偏航角"> </el-table-column>
         <el-table-column prop="state" label="状态"> </el-table-column>
-        <el-table-column prop="mission" label="状态"> </el-table-column>
+        <el-table-column prop="mission" label="任务"> </el-table-column>
         <el-table-column prop="battery" label="电池电量"> </el-table-column>
       </el-table>
     </div>

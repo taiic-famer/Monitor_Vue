@@ -17,8 +17,9 @@ setInterval(() => {
     `,"name": "plane2",` +
     `"speed": 0,` +
     `"state": "mission",` +
-    `"mission": "任务2",` +
-    `"type": "固定翼",` +
+    `"mission": "subtree_task.xml",` +
+    `"node":` + 4 +
+    `, "type": "固定翼",` +
     `"verticalSpeed": 0,` +
     `"pitch": 0,` +
     `"roll": 0,` +
