@@ -31,9 +31,10 @@
         <el-table-column prop="roll" label="横滚角"> </el-table-column>
         <el-table-column prop="yaw" label="偏航角"> </el-table-column>
         <el-table-column prop="state" label="状态"> </el-table-column>
-        <el-table-column prop="mission" label="任务"> </el-table-column>
+        <!-- <el-table-column  label="任务"> </el-table-column> -->
         <el-table-column prop="battery" label="电池电量"> </el-table-column>
       </el-table>
+      <mission></mission>
     </div>
   </div>
 </template>
@@ -43,8 +44,8 @@ let getIndex = new Array()
 import mqtt from 'mqtt'
 var client = mqtt.connect('ws://192.168.61.31:1883')
 import gdm from '../../components/GdMap/index_data'
-import mission from '../../components/FlightData/Data/tab/mission'
 import right from '../../components/FlightPlan/FunctionRight/index'
+import mission from '../../components/missionData_planeToStation'
 export default {
   data() {
     return {
@@ -97,7 +98,7 @@ export default {
   components: {
     gdm,
     mission,
-    right,
+    right
   },
 }
 </script>

@@ -23,5 +23,9 @@ export default {
   },
   updateCurrentCheckedCategory(state, payload) {
     state.currentCheckedCategory = payload
+  },
+
+  updateMissionData(state, payload) {
+    state.missionData = payload
   }
 }

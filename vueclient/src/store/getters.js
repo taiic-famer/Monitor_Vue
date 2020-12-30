@@ -2,6 +2,9 @@ export default {
   getPlaneDataByIP(state) {
     return state.planeData.find(p => p.IP == state.currentPlane[0])
   },
+  getMissionDataByIP(state) {
+    return state.missionData.find(p => p.IP == state.currentPlane[0])
+  },
   getCategoryByClick(state) {
     let arr = []
     let Category = state.currentCategory
@@ -18,8 +21,8 @@ export default {
         }
 
       } else if (Category == 'mission') {
-        if (!arr.find(value => value == state.planeData[i].mission)) {
-          arr.push(state.planeData[i].mission)
+        if (!arr.find(value => value == state.missionData[i].mission)) {
+          arr.push(state.missionData[i].mission)
         }
       }
       // } else if (Category == 'battery') {
@@ -61,7 +64,7 @@ export default {
 
     } else if (Category == 'mission') {
       for (let i = 0; i < value.length; i++) {
-        arr.push(state.planeData.filter(p => p.mission == value[i]))
+        arr.push(state.missionData.filter(p => p.mission == value[i]))
       }
     } else if (Category == 'battery') {
 

@@ -6,7 +6,7 @@ const lng = 117
 
 setInterval(() => {
   let value = Math.ceil(Math.random() * 10)
-  let value1 =Math.ceil(Math.random()*4)
+  // let value1 =Math.ceil(Math.random()*4)
   let lngvalue = lng + value / 10
   message = '{' +
     `"IP": "192.168.61.1",` +
@@ -17,9 +17,7 @@ setInterval(() => {
     `, "name": "plane1",` +
     `"speed": ` + 0 +
     `, "state": "mission",` +
-    `"mission": "FirstBT.xml",` +
-    `"node": `+ value1 +
-    `, "type": "四旋翼",` +
+    `"type": "四旋翼",` +
     `"verticalSpeed": 0,` +
     `"pitch": 0,` +
     `"roll": 0,` +

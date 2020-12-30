@@ -1,63 +1,66 @@
 <template>
   <div class="main">
-    <el-button
-      size="mini"
-      type="text"
-      class="descriptionList"
-      @click="descriptionListBtn"
-      >任务详细信息</el-button
-    >
-    <el-button
-      size="mini"
-      type="text"
-      class="loadXML"
-      @click="
-        file(
-          'http://192.168.61.31:3000/upload/temp/' +
-            $store.getters.getPlaneDataByIP.mission
-        )
-      "
-      >加载行为树</el-button
-    >
-    <br />
-    <mermaid :nodes="data" type="graph TB"></mermaid>
-    <button @click="changeByID(0)">0</button>
-    <button @click="changeByID(1)">1</button>
-    <button @click="changeByID(2)">2</button>
-    <button @click="changeByID(3)">3</button>
-    <button @click="changeByID(4)">4</button>
-    <button @click="changeByID(5)">5</button>
-    <br />
+    <h2 v-if="errorMsgShow">{{ errorMsg }}</h2>
+    <div v-if="!errorMsgShow">
+      <el-button
+        size="mini"
+        type="text"
+        class="descriptionList"
+        @click="descriptionListBtn"
+        >任务详细信息</el-button
+      >
+      <el-button
+        size="mini"
+        type="text"
+        class="loadXML"
+        @click="
+          file(
+            'http://192.168.61.31:3000/upload/temp/' +
+              $store.getters.getMissionDataByIP.mission
+          )
+        "
+        >加载行为树</el-button
+      >
+      <br />
+      <mermaid :nodes="data" type="graph TB"></mermaid>
+      <button @click="changeByID(0)">0</button>
+      <button @click="changeByID(1)">1</button>
+      <button @click="changeByID(2)">2</button>
+      <button @click="changeByID(3)">3</button>
+      <button @click="changeByID(4)">4</button>
+      <button @click="changeByID(5)">5</button>
+      <br />
 
-    <div class="dialog">
-      <el-dialog v-dialogDrag :visible.sync="dialogVisible" width="800px">
-        <el-table :data="items">
-          <el-table-column prop="id" label="ID" width="50px"> </el-table-column>
-          <el-table-column prop="class" label="节点类型" width="100px">
-          </el-table-column>
-          <el-table-column label="描述"
-            ><span slot-scope="scope"
-              ><span>{{ scope.row.description }}</span></span
+      <div class="dialog">
+        <el-dialog v-dialogDrag :visible.sync="dialogVisible" width="800px">
+          <el-table :data="items">
+            <el-table-column prop="id" label="ID" width="50px">
+            </el-table-column>
+            <el-table-column prop="class" label="节点类型" width="100px">
+            </el-table-column>
+            <el-table-column label="描述"
+              ><span slot-scope="scope"
+                ><span>{{ scope.row.description }}</span></span
+              >
+            </el-table-column>
+          </el-table>
+          <div class="block">
+            <el-pagination
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :page-size="pageSize"
+              layout="total, prev, pager, next, jumper"
+              :total="descriptionOfData.length"
             >
-          </el-table-column>
-        </el-table>
-        <div class="block">
-          <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :page-size="pageSize"
-            layout="total, prev, pager, next, jumper"
-            :total="descriptionOfData.length"
-          >
-          </el-pagination>
-        </div>
-      </el-dialog>
-      <!-- <span>{{ $store.getters.getPlaneDataByIP.mission }}</span> -->
-      <h2>id:{{showDescriptionData.id}}</h2>
-      <h2>节点:{{showDescriptionData.class}}</h2>
-      <h2>描述:{{showDescriptionData.description}}</h2>
+            </el-pagination>
+          </div>
+        </el-dialog>
+
+        <h2>id:{{ showDescriptionData.id }}</h2>
+        <h2>节点:{{ showDescriptionData.class }}</h2>
+        <h2>描述:{{ showDescriptionData.description }}</h2>
+      </div>
     </div>
-    
   </div>
 </template>
 <script>
@@ -78,31 +81,32 @@ export default {
       showDescriptionData: '',
       pageSize: 6,
       items: [],
+      errorMsg: '',
+      errorMsgShow: false
     }
   },
   components: {
     mermaid,
- 
   },
   computed: {
     ...mapState(['currentPlane']),
-    ...mapGetters(['getPlaneDataByIP']),
+    ...mapGetters(['getMissionDataByIP']),
   },
   mounted() {
     this.file(
       'http://192.168.61.31:3000/upload/temp/' +
-        this.$store.getters.getPlaneDataByIP.mission
+        this.$store.getters.getMissionDataByIP.mission
     )
   },
   watch: {
     currentPlane: function (newValue) {
       this.file(
         'http://192.168.61.31:3000/upload/temp/' +
-          this.$store.getters.getPlaneDataByIP.mission
+          this.$store.getters.getMissionDataByIP.mission
       )
-      this.changeByID(this.$store.getters.getPlaneDataByIP.node)
+      this.changeByID(this.$store.getters.getMissionDataByIP.node)
     },
-    getPlaneDataByIP: function (oldValue, newValue) {
+    getMissionDataByIP: function (oldValue, newValue) {
       // this.file('http://192.168.61.31:3000/upload/temp/' + newValue.mission)
       if (newValue.mission == oldValue.mission) {
         if (newValue.node != oldValue.node) {
@@ -310,6 +314,7 @@ export default {
       _this.$http
         .get(url)
         .then(async function (response) {
+          _this.errorMsgShow = false
           const result = response.data
 
           // console.log(result)
@@ -328,11 +333,12 @@ export default {
             // _this.jsonToData(arr)
             // console.log(_this.data)
             _this.init()
-            _this.changeByID(_this.$store.getters.getPlaneDataByIP.node)
+            _this.changeByID(_this.$store.getters.getMissionDataByIP.node)
           }
         })
         .catch(function (err) {
-          console.log(err)
+          _this.errorMsgShow = true
+          _this.errorMsg = '此无人机不执行任务'
         })
     },
     reload() {

@@ -90,6 +90,7 @@
       <el-button  type="text" @click="button" class="button">
         <img src="../../assets/images/fold.png" alt="" />
       </el-button>
+      <mission></mission>
     </div>
   </div>
 </template>
@@ -97,6 +98,7 @@
 <script>
 import gdm from '../../components/GdMap/index_data'
 import child from '../../components/FlightData/Data/index'
+import mission from '../../components/missionData_planeToStation'  // 从无人机发送过来的mqtt任务消息
 import airplanem from '../../assets/images/fi_tc_airplane_m.svg'
 import airplanel from '../../assets/images/fi_tc_airplane_l.svg'
 import airplaner from '../../assets/images/fi_tc_airplane_r.svg'
@@ -151,6 +153,7 @@ export default {
   components: {
     gdm,
     child,
+    mission
   },
 }
 </script>

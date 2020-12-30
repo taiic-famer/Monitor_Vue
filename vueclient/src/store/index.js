@@ -11,6 +11,7 @@ Vue.use(Vuex)
 const state = {
   currentPlane: [],
   planeData: [],
+  missionData: [],
   mapSize: 24,
   currentCategory: '',
   currentCheckedCategory: [],

@@ -17,7 +17,6 @@ setInterval(() => {
     `, "name": "plane3",` +
     `"speed": 0,` +
     `"state": "idle",` +
-    `"mission": "null",` +
     `"type": "四旋翼",` +
     `"verticalSpeed": 0,` +
     `"pitch": 0,` +

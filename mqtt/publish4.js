@@ -17,7 +17,6 @@ setInterval(() => {
     `,"name": "plane4",` +
     `"speed": 0,` +
     `"state": "charging",` +
-    `"mission": "null",` +
     `"type": "固定翼",` +
     `"verticalSpeed": 0,` +
     `"pitch": 0,` +

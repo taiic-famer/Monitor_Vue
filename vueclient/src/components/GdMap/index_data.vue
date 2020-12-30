@@ -131,7 +131,9 @@ export default {
       client.on('message', (topic, message) => {
         // console.log(message.toString())
         // console.log(JSON.parse(message.toString()))
+        
         let oMessage = JSON.parse(message.toString())
+        console.log(oMessage)
         let IP = oMessage.IP
 
         if (this.planeList.length == 0) {
