@@ -4,7 +4,7 @@
     <el-row
       ><el-col :span="12">
         <ul class="ul">
-          <li
+          <li 
             v-for="(value, key) in arr"
             :key="key"
             @click="categoryClick(value)"
@@ -16,12 +16,13 @@
           >确定</el-button
         > </el-col
       ><el-col :span="12">
+        
         <ul class="ulChecked">
           <li
             v-for="(value, key) in this.$store.getters.getCategoryByClick"
             :key="key"
           >
-            <input
+            <input style="cursor: pointer"
               type="checkbox"
               :id="key"
               :value="value"
@@ -35,44 +36,44 @@
           v-if="$store.state.currentCategory == 'battery'"
         >
           <li>
-            <input
+            <input style="cursor: pointer"
               type="checkbox"
               id="key80"
               :value="80"
               v-model="checkedCategory"
-            /><label>100~80</label>
+            /><label style="cursor: pointer">100~80</label>
           </li>
           <li>
-            <input
+            <input style="cursor: pointer"
               type="checkbox"
               id="key60"
               :value="60"
               v-model="checkedCategory"
-            /><label>79~60</label>
+            /><label style="cursor: pointer">79~60</label>
           </li>
           <li>
-            <input
-              type="checkbox"
+            <input style="cursor: pointer"
+              type="checkbox" 
               id="key40"
               :value="40"
               v-model="checkedCategory"
-            /><label>59~40</label>
+            /><label style="cursor: pointer">59~40</label>
           </li>
           <li>
-            <input
+            <input style="cursor: pointer"
               type="checkbox"
               id="key20"
               :value="20"
               v-model="checkedCategory"
-            /><label>39~20</label>
+            /><label style="cursor: pointer">39~20</label>
           </li>
           <li>
-            <input
+            <input style="cursor: pointer"
               type="checkbox"
               id="key0"
               :value="0"
               v-model="checkedCategory"
-            /><label>19~0</label>
+            /><label style="cursor: pointer">19~0</label>
           </li>
         </ul>
       </el-col></el-row
@@ -135,14 +136,15 @@ export default {
   line-height: 50px;
   font-size: 25px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .ul {
-
   padding: 20px;
   line-height: 74px;
   font-weight: bold;
   font-size: 20px;
+  cursor: pointer
 }
 .btn {
   margin-left: 20px;
@@ -153,6 +155,7 @@ export default {
   line-height: 30px;
   font-family: 'Times New Roman', Times, serif;
   font-size: 20px;
+  cursor: pointer;
 }
 .ulCheckedBattery {
   position: absolute;
@@ -162,5 +165,6 @@ export default {
   line-height: 30px;
   font-family: 'Times New Roman', Times, serif;
   font-size: 20px;
+  cursor: pointer;
 }
 </style>

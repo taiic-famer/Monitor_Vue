@@ -1,38 +1,38 @@
 <template>
- 
-    <div class="amap-wrapper">
-      <el-amap
-        vid="amapContainer"
-        :center="center"
-        :zoom="zoom"
-        viewMode="3D"
-        pitch="30"
-        pitchEnable="true"
-        class="amap-demo"
-      >
-        <el-amap-marker
-          v-for="(marker, index) in markers"
-          :key="index"
-          :position="marker.position"
-          :events="marker.events"
-          :visible="marker.visible"
-          :draggable="marker.draggable"
-          :vid="index"
-          :icon="marker.icon"
-        ></el-amap-marker>
-        <el-amap-info-window
-          v-if="window"
-          :position="window.position"
-          :visible="window.visible"
-          :content="window.content"
-        ></el-amap-info-window>
-      </el-amap>
-    </div>
- 
+  <div class="amap-wrapper">
+    <el-amap
+      vid="amapContainer"
+      :map-manager="amapManager"
+      :center="center"
+      :events="events"
+      :zoom="zoom"
+      viewMode="3D"
+      pitch="0"
+      pitchEnable="true"
+      class="amap-demo"
+    >
+      <el-amap-marker
+        v-for="(marker, index) in markers"
+        :key="index"
+        :position="marker.position"
+        :events="marker.events"
+        :visible="marker.visible"
+        :draggable="marker.draggable"
+        :vid="index"
+        :icon="marker.icon"
+      ></el-amap-marker>
+      <el-amap-info-window
+        v-if="window"
+        :position="window.position"
+        :visible="window.visible"
+        :content="window.content"
+      ></el-amap-info-window>
+    </el-amap>
+  </div>
 </template>
 
 <script>
-import { AMapManager } from 'vue-amap'
+import { AMapManager, lazyAMapApiLoaderInstance } from 'vue-amap'
 let amapManager = new AMapManager()
 import planeIcon from '../../assets/images/plane2.png'
 import currentPlaneIcon from '../../assets/images/plane1.png'
@@ -41,31 +41,100 @@ var client = mqtt.connect('ws://192.168.61.31:1883')
 export default {
   data() {
     return {
-  
       planeList: [],
-      center: [117.736689, 39.0461222],
-      zoom: 9,
+      center: [117.72894, 39.0401285],
+      zoom: 16,
+      amapManager,
       markers: [
         // {
         //   icon: planeIcon,
-        //   position: [117.736689, 39.0461222],
+        //   position: [117.72894, 39.0401285],
         //   offset: (-16, -16),
         //   visible: true,
         //   draggable: false,
-        //   // template: '<span>1</span>',
+        //   template: '<span>1</span>',
         // },
       ],
+      markerEvent: {
+        click(e) {
+          console.log('点击', e)
+        },
+      },
+      events: {
+        init(map) {
+          // const map = map
+          var object3Dlayer = new AMap.Object3DLayer()
+          map.add(object3Dlayer)
+
+          var druckMeshes
+
+          map.plugin(['AMap.GltfLoader'], function () {
+            // var urlcar = 'https://a.amap.com/jsapi_demos/static/gltf/car.gltf'
+            let urlcar = 'http://192.168.61.31:3000/upload/temp/Car.gltf'
+
+            let paramcar = {
+              // position: new AMap.LngLat(117.736689, 39.0461222), // 必须
+              position: [117.72894, 39.0401285],
+              scale: 50, // 非必须，默认1
+              height: -100, // 非必须，默认0
+              scene: 0, // 非必须，默认0
+            }
+
+            var gltfObj = new AMap.GltfLoader()
+
+            gltfObj.load(urlcar, function (gltfcar) {
+              druckMeshes = gltfcar
+              gltfcar.setOption(paramcar)
+              gltfcar.rotateX(90)
+              gltfcar.rotateZ(0)
+              object3Dlayer.add(gltfcar)
+            })
+            let urlCrate = 'http://192.168.61.31:3000/upload/temp/Crate1.gltf'
+            let paramCrate = {
+              // position: new AMap.LngLat(117.736689, 39.0461222), // 必须
+              position: [117.72894, 39.0401285],
+              scale: 50, // 非必须，默认1
+              height: -100, // 非必须，默认0
+              scene: 0, // 非必须，默认0
+            }
+
+            var gltfObj = new AMap.GltfLoader()
+
+            gltfObj.load(urlCrate, function (gltfCrate) {
+              druckMeshes = gltfCrate
+              gltfCrate.setOption(paramCrate)
+              gltfCrate.rotateX(90)
+              gltfCrate.rotateZ(0)
+              object3Dlayer.add(gltfCrate)
+            })
+          })
+        },
+
+        click(e) {
+          self.markers = []
+          let { lng, lat } = e.lnglat
+          self.lng = lng
+          self.lat = lat
+          console.log(e)
+        },
+      },
       windows: [],
       window: '',
     }
   },
   created() {
     this.mqttMsg()
-    // 定时获取数据
-    // this.timer = setInterval(()=>{
-    //   this.fetchPlaneData()
-    // }, 1000)
+
     this.fetchPlaneData()
+  },
+  computed: {
+    carPosition: function () {
+      let position = [117.72894, 39.0401285]
+
+      // let value = Math.ceil(Math.random() * 10)
+      // position[0] += value / 1000
+      return position
+    },
   },
 
   methods: {
@@ -75,24 +144,25 @@ export default {
       this.print()
     },
     print() {
-      console.log(this.$store.state.planeData)
+      // console.log(this.$store.state.planeData)
     },
 
     plane() {
+      // console.log(this.carPosition)
       let markers = []
       let windows = []
       let position = []
-      let num = this.$store.state.planeData.length
+
       let _this = this
 
-      for (let i = 0; i < num; i++) {
+      for (let i = 0; i < _this.$store.getters.getPlaneData.length; i++) {
         let planePosition = []
         // console.log(this.$store.state.planeData[i].longitude)
-        planePosition[0] = this.$store.state.planeData[i].longitude
-        planePosition[1] = this.$store.state.planeData[i].latitude
+        planePosition[0] = this.$store.getters.getPlaneData[i].longitude
+        planePosition[1] = this.$store.getters.getPlaneData[i].latitude
         markers.push({
           icon: _this.$store.state.currentPlane.some(function (value) {
-            return value == _this.$store.state.planeData[i].IP
+            return value == _this.$store.getters.getPlaneData[i].IP
           })
             ? currentPlaneIcon
             : planeIcon,
@@ -104,7 +174,7 @@ export default {
                 'updateCurrentPlane',
                 _this.$store.state.planeData[i].IP
               )
-              console.log(_this.$store.state.currentPlane)
+              // console.log(_this.$store.state.currentPlane)
               _this.$store.commit('updateMapSize')
             },
           },
@@ -112,6 +182,7 @@ export default {
       }
 
       this.markers = markers
+      // console.log(this.$store.state.planeData)
       this.windows = windows
     },
 
@@ -131,9 +202,10 @@ export default {
       client.on('message', (topic, message) => {
         // console.log(message.toString())
         // console.log(JSON.parse(message.toString()))
-        
         let oMessage = JSON.parse(message.toString())
-        console.log(oMessage)
+        // console.log(oMessage)
+        let myDate = new Date()
+        this.$set(oMessage, 'time', myDate.getTime())
         let IP = oMessage.IP
 
         if (this.planeList.length == 0) {

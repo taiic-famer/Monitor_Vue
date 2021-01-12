@@ -23,12 +23,7 @@
       >
       <br />
       <mermaid :nodes="data" type="graph TB"></mermaid>
-      <button @click="changeByID(0)">0</button>
-      <button @click="changeByID(1)">1</button>
-      <button @click="changeByID(2)">2</button>
-      <button @click="changeByID(3)">3</button>
-      <button @click="changeByID(4)">4</button>
-      <button @click="changeByID(5)">5</button>
+  
       <br />
 
       <div class="dialog">

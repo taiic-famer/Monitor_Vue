@@ -14,7 +14,8 @@
           </el-menu-item-group>
           <el-menu-item-group>
             <template slot="title">Gazebo</template>
-            <el-menu-item index="/gazebo">Gazebo</el-menu-item>
+            <!-- <el-menu-item index="/gazebo">Gazebo</el-menu-item> -->
+            <el-menu-item index="/gazebo1">Gazebo</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
             <template slot="title">服务器监控</template>

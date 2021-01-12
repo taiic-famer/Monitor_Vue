@@ -4,6 +4,7 @@ import Main from '../views/Main.vue'
 import PlaneData from '../views/Monitor/PlaneData.vue'
 import PlanePlan from '../views/Monitor/PlanePlan.vue'
 import Gazebo from '../views/Monitor/Gazebo.vue'
+import Gazebo1 from '../views/Monitor/Gazebo1.vue'
 import MetricData from '../views/Monitor/MetricData.vue'
 import MetricCheck from '../views/Monitor/MetricCheck.vue'
 import Mqtt from '../views/Deployment/Mqtt.vue'
@@ -50,6 +51,10 @@ const routes = [
       {
 				path: '/gazebo',
 				component: Gazebo
+      },
+      {
+				path: '/gazebo1',
+				component: Gazebo1
 			},
 			{
 				path: '/metrics/data',

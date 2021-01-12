@@ -1,9 +1,29 @@
 export default {
+  getPlaneData(state) {
+    return state.planeData.filter((p) => {
+      let now = new Date()
+      return (now.getTime() - p.time) <= 5000
+    })
+  },
   getPlaneDataByIP(state) {
     return state.planeData.find(p => p.IP == state.currentPlane[0])
   },
   getMissionDataByIP(state) {
     return state.missionData.find(p => p.IP == state.currentPlane[0])
+  },
+  getData(state) {
+    let arr = []
+    for (let i = 0; i < state.planeData.length; i++) {
+      arr[i] = state.planeData[i]
+      if (state.planeData[i].state == "mission") {
+        for (let j = 0; j < state.missionData.length; j++) {
+          if (state.planeData[i].IP == state.missionData[j].IP) {
+            arr[i].state = state.missionData[j].mission.split('.')[0]
+          }
+        }
+      }
+    }
+    return arr
   },
   getCategoryByClick(state) {
     let arr = []

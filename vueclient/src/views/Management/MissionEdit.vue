@@ -13,7 +13,7 @@
 
             <el-form-item label="任务文件">
               <input type="file" multiple id="btnFile" />
-              <input type="button" value="上传" @click="upload(0)" />
+              <el-button type="primary" value="上传" @click="upload(0)" >上传</el-button>
               <br />
               <span v-if="uploadShow">{{ uploadText }}</span>
             </el-form-item>

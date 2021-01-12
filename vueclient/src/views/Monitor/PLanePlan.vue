@@ -16,23 +16,44 @@
         :row-style="selectedstyle"
         @row-click="rowClick"
         :default-sort="{ prop: 'name', order: 'ascending' }"
-        :data="$store.state.planeData"
+        :data="$store.getters.getData"
       >
-        <el-table-column prop="name" label="name"> </el-table-column>
-        <el-table-column prop="IP" label="IP"> </el-table-column>
-        <el-table-column prop="type" label="类型"> </el-table-column>
-        <el-table-column prop="longitude" label="经度"> </el-table-column>
-        <el-table-column prop="latitude" label="纬度"> </el-table-column>
-        <el-table-column prop="altitude" label="高度"> </el-table-column>
-        <el-table-column prop="speed" label="水平速度"> </el-table-column>
-        <el-table-column prop="verticalSpeed" label="垂直速度">
+        <el-table-column prop="name" label="name" sortable> </el-table-column>
+        <el-table-column prop="IP" label="IP" sortable> </el-table-column>
+        <el-table-column
+          prop="type"
+          label="类型"
+          :filters="[
+            { text: '固定翼', value: '固定翼' },
+            { text: '四旋翼', value: '四旋翼' },
+          ]"
+          :filter-method="filterType"
+        >
         </el-table-column>
-        <el-table-column prop="pitch" label="俯仰角"> </el-table-column>
-        <el-table-column prop="roll" label="横滚角"> </el-table-column>
-        <el-table-column prop="yaw" label="偏航角"> </el-table-column>
-        <el-table-column prop="state" label="状态"> </el-table-column>
+        <el-table-column prop="longitude" label="经度" sortable>
+        </el-table-column>
+        <el-table-column prop="latitude" label="纬度" sortable>
+        </el-table-column>
+        <el-table-column prop="altitude" label="高度" sortable>
+        </el-table-column>
+        <el-table-column prop="speed" label="水平速度" sortable>
+        </el-table-column>
+        <el-table-column prop="verticalSpeed" label="垂直速度" sortable>
+        </el-table-column>
+        <el-table-column prop="pitch" label="俯仰角" sortable>
+        </el-table-column>
+        <el-table-column prop="roll" label="横滚角" sortable> </el-table-column>
+        <el-table-column prop="yaw" label="偏航角" sortable> </el-table-column>
+        <el-table-column
+          prop="state"
+          label="状态"
+          :filters="state"
+          :filter-method="filterState"
+        >
+        </el-table-column>
         <!-- <el-table-column  label="任务"> </el-table-column> -->
-        <el-table-column prop="battery" label="电池电量"> </el-table-column>
+        <el-table-column prop="battery" label="电池电量" sortable>
+        </el-table-column>
       </el-table>
       <mission></mission>
     </div>
@@ -54,8 +75,33 @@ export default {
     }
   },
   created() {},
-  computed: {},
+  computed: {
+    state: function () {
+      let arr = []
+      let temp = []
+      // console.log(this.$store.getters.getData)
+      let temp1 = []
+      for (let i = 0; i < this.$store.getters.getData .length; i++) {
+        temp1.push(this.$store.getters.getData[i].state)
+      }
+      temp= Array.from(new Set(temp1))
+      for (let i = 0; i < temp.length; i++) {
+        arr.push({})
+        this.$set(arr[i], 'text', temp[i])
+        this.$set(arr[i], 'value', temp[i])
+      }
+      return arr
+    },
+  },
   methods: {
+    filterType(value, row, column) {
+      const property = column['property']
+      return row[property] == value
+    },
+    filterState(value, row, column) {
+      const property = column['property']
+      return row[property] == value
+    },
     selectedstyle({ row, rowIndex }) {
       if (getIndex.some((value) => value == rowIndex)) {
         return {
@@ -98,7 +144,7 @@ export default {
   components: {
     gdm,
     mission,
-    right
+    right,
   },
 }
 </script>
@@ -111,7 +157,6 @@ export default {
 }
 .left {
   height: 562px;
- 
 }
 .right {
   height: 562px;

@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h1>分类列表</h1>
+    <h1>任务文件列表</h1>
     <div v-if="isReloadData">
       <el-table :data="items">
         <el-table-column prop="_id" label="ID"> </el-table-column>

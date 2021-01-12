@@ -7,10 +7,10 @@
         </el-form-item>
 
         <el-form-item label="镜像文件">
-          <input type="file" id="btnFile" />
-          <input type="button" value="上传" @click="upload(0)" />
+          <input type="file" id="btnFile" class="upload" />
+          <el-button type="primary" @click="upload(0)">上传</el-button>
           <br />
-          <span v-if='uploadShow'>{{uploadText}}</span>
+          <span v-if="uploadShow">{{ uploadText }}</span>
         </el-form-item>
         <el-form-item label="描述">
           <el-input
@@ -58,17 +58,16 @@ export default {
   },
   methods: {
     upload(index) {
-      
       this.uploadShow = true
       let file = this.btnFile.files[0]
       let [fname, fext] = file.name.split('.')
       let start = index * this.chunkSize
-      this.num = 100 * start/file.size
+      this.num = (100 * start) / file.size
       this.model.size = file.size
-      this.num =this.num.toFixed(2)
+      this.num = this.num.toFixed(2)
       this.uploadText = `正在上传: 传输${this.num}%`
-      if(this.num>=100){
-        this.num = 100.00
+      if (this.num >= 100) {
+        this.num = 100.0
       }
       if (start > file.size) {
         this.merge(file.name)
@@ -97,7 +96,6 @@ export default {
         this.uploadText = '合并完成'
         this.saveBtnDisabled = false
       })
-      
     },
 
     // afterUploadImage(res) {
@@ -137,5 +135,7 @@ export default {
 .main {
   min-width: 1680px;
   height: 920px;
+}
+.upload {
 }
 </style>

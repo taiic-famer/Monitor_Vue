@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <div class="main">
       <a-row class="row-bg">
         <a-col :span="11">
@@ -39,7 +38,7 @@
         </a-col>
         <a-col :span="11">
           <div class="grid-content content4">
-            {{ $store.getters.getPlaneDataByIP.state }}
+            {{ mission }}
           </div>
         </a-col>
       </a-row>
@@ -162,13 +161,20 @@
 </template>
 
 <script>
-
-
 export default {
   data() {
     return {}
   },
-  
+  computed: {
+    mission: function () {
+      if (this.$store.getters.getPlaneDataByIP.state == 'mission') {
+        return this.$store.getters.getMissionDataByIP.mission.split('.')[0]
+      } else {
+        return this.$store.getters.getPlaneDataByIP.state
+      }
+    },
+  },
+
   created() {},
   methods: {},
 }
@@ -193,27 +199,27 @@ export default {
 }
 .content1 {
   font-size: 25px;
-  color: #D5B7E7;
+  color: #d5b7e7;
 }
 .content2 {
   font-size: 25px;
-  color: #EBAE82;
+  color: #ebae82;
 }
 .content3 {
   font-size: 25px;
-  color: #EC9C99;
+  color: #ec9c99;
 }
 .content4 {
   font-size: 25px;
-  color: #6CEB95;
+  color: #6ceb95;
 }
 .content5 {
   font-size: 25px;
-  color: #EBEB96;
+  color: #ebeb96;
 }
 .content6 {
   font-size: 25px;
-  color: #6CEBE9;
+  color: #6cebe9;
 }
 .row {
   padding: 10px 0;
